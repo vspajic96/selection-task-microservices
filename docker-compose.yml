@@ -14,7 +14,7 @@ services:
     -  "5672:5672"
     -  "15672:15672"
   service-a:
-    build: ./service-a
+    build: ./selection-task-serviceA
     image: service-a
     depends_on:
       - rabbitmq
@@ -22,7 +22,7 @@ services:
       - 8080:8080
     restart: on-failure
   service-b:
-    build: ./service-b
+    build: ./selection-task-serviceB
     image: service-b:latest
     depends_on:
       - mysql
