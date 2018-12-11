@@ -1,0 +1,6 @@
+[submodule "selection-task-serviceB"]
+	path = selection-task-serviceB
+	url = https://github.com/vspajic96/selection-task-serviceB
+[submodule "selection-task-serviceA"]
+	path = selection-task-serviceA
+	url = https://github.com/vspajic96/selection-task-serviceA
