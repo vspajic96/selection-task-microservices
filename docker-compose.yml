@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_example
+      - MYSQL_USER=springuser
+      - MYSQL_PASSWORD=ThePassword
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+    -  "5672:5672"
+    -  "15672:15672"
+  service-a:
+    build: ./service-a
+    image: service-a
+    depends_on:
+      - rabbitmq
+    ports:
+      - 8080:8080
+    restart: on-failure
+  service-b:
+    build: ./service-b
+    image: service-b:latest
+    depends_on:
+      - mysql
+      - rabbitmq
+    ports:
+      - 8081:8081
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=springuser
+      - DATABASE_PASSWORD=ThePassword
+      - DATABASE_NAME=db_example
+      - DATABASE_PORT=3306
+    restart: on-failure
