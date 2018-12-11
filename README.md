@@ -12,7 +12,7 @@ To clone this repository with all the submodules, execute the command:
 There are two ways to run the project on your system:
  
 1. Running each component individually
-2. Running the project using docker-compose
+2. Running the project using docker-compose (recommended)
 
 ## Running each component individually
 ### Prerequisites:
@@ -47,6 +47,8 @@ java -jar selection-task-serviceB/build/libs/service-b-0.0.1-SNAPSHOT.jar
 `docker-compose up`
 
 Note: You may need root privileges to execute Docker and Docker Compose commands.
+
+**WARNING**: Service B might fail and throw exceptions while trying to boot. This is expected behaviour because it needs to have the database server up and ready before it can start. Whenever the fails to boot it will restart until database is ready, then after the boot succeeds it will run normally. So just wait until everything is ready before trying to use the services.
 
 2. If you want to remove created containers after you're no longer using the services, run the command:
 `docker-compose down`
